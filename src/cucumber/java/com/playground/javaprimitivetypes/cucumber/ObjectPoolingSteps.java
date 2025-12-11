@@ -1,21 +1,21 @@
 package com.playground.javaprimitivetypes.cucumber;
 
 import com.playground.javaprimitivetypes.OrderPool;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ObjectPoolingSteps {
     
     private OrderPool pool;
     private OrderPool.Order currentOrder;
-    private Map<String, OrderPool.Order> namedOrders = new HashMap<>();
+    private final Map<String, OrderPool.Order> namedOrders = new HashMap<>();
     private Exception caughtException;
     
     @Given("I have an order pool with capacity {int}")

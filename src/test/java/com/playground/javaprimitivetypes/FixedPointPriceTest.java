@@ -1,8 +1,10 @@
 package com.playground.javaprimitivetypes;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import static org.assertj.core.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 
 @DisplayName("FixedPointPrice Tests")
 class FixedPointPriceTest {
@@ -11,7 +13,8 @@ class FixedPointPriceTest {
     @DisplayName("Should create price from double value")
     void shouldCreateFromDouble() {
         FixedPointPrice price = FixedPointPrice.fromDouble(123.456);
-        
+
+        assertThat(price.toDouble()).isEqualTo(123.456);
         assertThat(price.toDouble()).isCloseTo(123.456, within(0.00001));
         assertThat(price.toString()).isEqualTo("123.45600");
     }
@@ -43,6 +46,8 @@ class FixedPointPriceTest {
         FixedPointPrice result = price1.add(price2);
         
         assertThat(result.toDouble()).isCloseTo(150.75, within(0.00001));
+
+        assertThat(result.toDouble()).isEqualTo(150.75);
     }
     
     @Test
@@ -123,6 +128,8 @@ class FixedPointPriceTest {
         // With fixed-point, this should be exact
         assertThat(result.getScaledValue()).isEqualTo(30000L); // 0.30000 * 100000
         assertThat(result.toString()).isEqualTo("0.30000");
+
+        assertThat(price1.toDouble() + price2.toDouble()).isNotEqualTo(0.3);
     }
     
     @Test
